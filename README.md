@@ -41,9 +41,9 @@ The learning dynamics of the players can be tuned by modifying the `Universe` cl
 ## Package Structure
 ```
 TwoPlayerGame/
-│── game.py             # Core game logic and player interactions
+│── game.py             # Core game logic. Player and Universe classes.
 │── main.py             # Entry point for running experiments
-│── memory.py           # Memory management for action-cost history
+│── memory.py           # Memory management for action & cost history
 │── networks.py         # Neural network models for action & cost estimation
 │── utils.py            # Utility functions (seeding, sampling, regularization)
 │── cost_functions.py   # Cost function definitions for players
