@@ -59,9 +59,6 @@ The project relies on:
 - Matplotlib
 
 ## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+This project is licensed under the Creative Commons License. See the LICENSE file for details.
 ## Author
 Melih Iseri
-
-
->>>>>>> 4ccba99 (Initial commit.)
