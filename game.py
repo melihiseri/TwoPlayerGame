@@ -6,7 +6,7 @@ from .memory import Memory
 from .networks import ActionEstimator, CostEstimator
 from .cost_functions import cost1, cost2
 from .visualization import plot_all_actions, plot_cumulative_rewards, plot_moving_average_rewards, setup_plots, update_plots
-from .utils import set_seed, l4_regularization, compute_param_change, sample_bayesian
+from .utils import set_seed, l4_regularization
 
 from copy import deepcopy
 
@@ -151,7 +151,6 @@ class Player:
 
                 # Loss function -- l4 regularization
                 loss = 10 * ((all_outputs - all_targets)**2).mean() + l4_regularization(action_net, 1e-3)
-                total_loss += loss.item()
 
                 # Backpropagation
                 loss.backward()

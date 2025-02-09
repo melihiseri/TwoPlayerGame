@@ -23,21 +23,21 @@ def plot_all_actions(a1_past: list[float], a2_past: list[float], filename: str =
     min_length = min(len(a1_past), len(a2_past))
     a1_past, a2_past = a1_past[:min_length], a2_past[:min_length]
 
-    fig, ax = plt.subplots(figsize=(7, 4.5), dpi=600)
-    plt.plot(range(min_length), a1_past, label="Player 1 Actions", color="firebrick", marker="o", markersize=8.0, linestyle="--", linewidth=0.05)
-    plt.plot(range(min_length), a2_past, label="Player 2 Actions", color="navy", marker="o", markersize=5.0, linestyle="--", linewidth=0.05)
+    fig, ax = plt.subplots(figsize=(5.5, 3.5), dpi=600)
+    plt.plot(range(min_length), a1_past, label="Player 1 Actions", color="firebrick", marker="o", markersize=5.0, linestyle="--", linewidth=0.05)
+    plt.plot(range(min_length), a2_past, label="Player 2 Actions", color="navy", marker="o", markersize=3.0, linestyle="--", linewidth=0.05)
 
-    plt.xlabel("Number of Games", fontsize=9, fontweight="bold")
-    plt.ylabel("Actions Taken", fontsize=9, fontweight="bold")
+    # plt.xlabel("Number of Games", fontsize=9, fontweight="bold")
+    # plt.ylabel("Actions Taken", fontsize=9, fontweight="bold")
     # plt.title("Player Actions of Each Game", fontsize=14, fontweight="bold")
     ax.tick_params(axis="both", which="major", labelsize=8)
-    ax.grid(True, linestyle="--", linewidth=0.5, alpha=0.5)
+    ax.grid(True, linestyle="--", linewidth=0.4, alpha=0.3)
 
-    plt.legend(fontsize=9, loc="best", frameon=False)
+    # plt.legend(fontsize=9, loc="best", frameon=False)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")
     print(filename)
-    plt.savefig(f"Player_actions_{filename}", format="pdf", bbox_inches="tight")
+    plt.savefig(f"Player_actions_{filename}.pdf", format="pdf", bbox_inches="tight")
     plt.close()
 
 def plot_cumulative_rewards(

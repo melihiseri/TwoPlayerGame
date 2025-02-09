@@ -56,9 +56,11 @@ def manual_animation(N_game: int, n_experiment: int, save: bool = False, filenam
             print("\nError: FFmpeg not found! Install it using 'sudo apt install ffmpeg' or 'brew install ffmpeg'.")
             return
 
+        # --- H.264 - Lower Quality for GitHub push
+        ffmpeg_command = f"ffmpeg -r 4 -i frames/frame_%03d.png -vf \"scale=1920:1080:flags=lanczos\" -vcodec libx264 -crf 28 -preset medium -pix_fmt yuv420p -movflags +faststart animation_{filename}.mp4"        
         # --- H.264 Better Compatibility
-        ffmpeg_command = f"ffmpeg -r 4 -i frames/frame_%03d.png -vf \"scale=1920:1080:flags=lanczos\" -vcodec libx264 -crf 23 -preset medium -pix_fmt yuv420p -movflags +faststart animation_{filename}.mp4"
-        # --- H.265 Better Compression
+        # ffmpeg_command = f"ffmpeg -r 4 -i frames/frame_%03d.png -vf \"scale=1920:1080:flags=lanczos\" -vcodec libx264 -crf 23 -preset medium -pix_fmt yuv420p -movflags +faststart animation_{filename}.mp4"
+        # --- H.265
         # ffmpeg_command = f"ffmpeg -r 4 -i frames/frame_%03d.png -vf \"scale=1920:1080:flags=lanczos\" -vcodec libx265 -crf 23 -preset slow -pix_fmt yuv420p -movflags +faststart animation_{filename}.mp4"
 
         os.system(ffmpeg_command)
@@ -83,7 +85,7 @@ def main():
     # Run the experiments defined in the Universe class.
     for n_experiment in [0, 1, 2, 3]:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-        manual_animation(N_game=500, n_experiment=n_experiment, save=True,
+        manual_animation(N_game=5, n_experiment=n_experiment, save=True,
                          filename = f"{timestamp}_experiment{n_experiment}")
         print(f"\nExperiment {n_experiment} completed.")
         
