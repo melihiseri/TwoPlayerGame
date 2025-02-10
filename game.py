@@ -427,10 +427,10 @@ class Universe:
         Plays one step of the game. This function should be called iteratively from manual_animation().
 
         Args:
-            action_rate (float): Learning rate for action networks. Default is 0.1.
-            action_epoch (int): Number of training epochs for action networks. Default is 16.
-            cost_rate (float): Learning rate for cost networks. Default is 0.01.
-            cost_epoch (int): Number of training epochs for cost networks. Default is 16.
+            action_rate (float): Learning rate for action networks. Default is 0.001.
+            action_epoch (int): Number of training epochs for action networks. Default is 8.
+            cost_rate (float): Learning rate for cost networks. Default is 0.001.
+            cost_epoch (int): Number of training epochs for cost networks. Default is 8.
         """
 
         self.universe_time += 1

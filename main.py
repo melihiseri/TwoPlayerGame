@@ -57,7 +57,7 @@ def manual_animation(N_game: int, n_experiment: int, save: bool = False, filenam
             return
 
         # --- H.264 - Lower Quality for GitHub push
-        ffmpeg_command = f"ffmpeg -r 4 -i frames/frame_%03d.png -vf \"scale=1920:1080:flags=lanczos\" -vcodec libx264 -crf 28 -preset medium -pix_fmt yuv420p -movflags +faststart animation_{filename}.mp4"        
+        ffmpeg_command = f"ffmpeg -r 8 -i frames/frame_%03d.png -vf \"scale=1920:1080:flags=lanczos\" -vcodec libx264 -crf 28 -preset medium -pix_fmt yuv420p -movflags +faststart animation_{filename}.mp4"
         # --- H.264 Better Compatibility
         # ffmpeg_command = f"ffmpeg -r 4 -i frames/frame_%03d.png -vf \"scale=1920:1080:flags=lanczos\" -vcodec libx264 -crf 23 -preset medium -pix_fmt yuv420p -movflags +faststart animation_{filename}.mp4"
         # --- H.265
@@ -81,11 +81,15 @@ def manual_animation(N_game: int, n_experiment: int, save: bool = False, filenam
     
 def main():
     set_seed(1994)
-
+    
+    # Set the number of threads
+    torch.set_num_threads(16)    
+    print(f"Number of threads PyTorch is using: {torch.get_num_threads()}")
+    
     # Run the experiments defined in the Universe class.
     for n_experiment in [0, 1, 2, 3]:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M")
-        manual_animation(N_game=5, n_experiment=n_experiment, save=True,
+        manual_animation(N_game=1000, n_experiment=n_experiment, save=True,
                          filename = f"{timestamp}_experiment{n_experiment}")
         print(f"\nExperiment {n_experiment} completed.")
         
